@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Vitaq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #080810;
+      --bg2:       #0d0d18;
+      --border:    rgba(255,255,255,0.07);
+      --teal:      #00e5b8;
+      --purple:    #7c4dff;
+      --text:      #f0f0f8;
+      --text-mid:  #9090b0;
+      --text-dim:  #50507a;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,16,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 28px; height: 28px; }
+
+    .nav-wordmark {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-back {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    /* MAIN */
+    main {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 140px 24px 100px;
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .meta {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-family: 'DM Mono', monospace;
+      margin-bottom: 64px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-box {
+      background: rgba(0,229,184,0.05);
+      border: 1px solid rgba(0,229,184,0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+
+    .summary-box p {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .summary-box strong {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      margin-top: 48px;
+      color: var(--text);
+    }
+
+    h2:first-of-type { margin-top: 0; }
+
+    p {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    ul {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      padding-left: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li { line-height: 1.6; }
+
+    a {
+      color: var(--teal);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    a:hover { opacity: 0.75; }
+
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+
+    .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      main { padding: 120px 20px 80px; }
+      h1 { font-size: 2rem; }
+      footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00e5b8" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="62" y1="24" x2="92" y2="24" stroke="#7c4dff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="22" y1="46" x2="44" y2="46" stroke="#00c9a7" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="56" y1="46" x2="78" y2="46" stroke="#6a3ee0" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <path d="M36 63 L50 86 L64 63 Z" fill="url(#navGrad)"/>
+        <defs>
+          <linearGradient id="navGrad" x1="36" y1="63" x2="64" y2="86">
+            <stop offset="0%" stop-color="#00e5b8"/>
+            <stop offset="100%" stop-color="#7c4dff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">vitaq</span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </nav>
+
+  <main>
+    <span class="page-label">// legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective date: March 11, 2026 &nbsp;·&nbsp; Last updated: March 11, 2026</p>
+
+    <div class="summary-box">
+      <p><strong>The short version:</strong> Vitaq is built on a local-first philosophy. Your workout data, nutrition logs, health metrics, and personal information are stored exclusively on your device. We do not collect, transmit, sell, or share your personal data. We have no servers storing your information.</p>
+    </div>
+
+    <h2>1. Who We Are</h2>
+    <p>Vitaq ("we," "us," or "our") is a fitness application developed and operated as an independent app. If you have any questions about this Privacy Policy, you can contact us at <a href="mailto:support@getvitaq.app">support@getvitaq.app</a>.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>2. Information We Do Not Collect</h2>
+    <p>Vitaq does not collect, store, or transmit any personal information to external servers. This includes:</p>
+    <ul>
+      <li>Your name, email address, or account credentials</li>
+      <li>Workout history, exercise logs, or training data</li>
+      <li>Nutrition logs, food entries, or dietary information</li>
+      <li>Body metrics including weight, height, or body composition</li>
+      <li>Health data accessed through Apple HealthKit</li>
+      <li>Device identifiers or usage analytics</li>
+      <li>Location data</li>
+      <li>Payment information (handled entirely by Apple)</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2>3. Data Stored on Your Device</h2>
+    <p>All data you enter into Vitaq is stored locally on your iPhone and Apple Watch using on-device storage. This data never leaves your device unless you explicitly choose to back it up through Apple's standard iCloud Backup or device transfer features, which are governed by Apple's own Privacy Policy.</p>
+    <p>Data stored locally includes:</p>
+    <ul>
+      <li>Workout logs, exercise history, and personal records</li>
+      <li>Nutrition entries, meal templates, and food logs</li>
+      <li>Profile information including goals and body metrics</li>
+      <li>App preferences and settings</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2>4. Apple HealthKit</h2>
+    <p>Vitaq integrates with Apple HealthKit to read and write health and fitness data such as active energy burned, workout sessions, and body weight. This integration is subject to Apple's HealthKit guidelines.</p>
+    <ul>
+      <li>HealthKit data is stored on your device and within Apple's Health app</li>
+      <li>We do not share HealthKit data with third parties</li>
+      <li>We do not use HealthKit data for advertising or marketing purposes</li>
+      <li>You can revoke HealthKit permissions at any time in your iPhone Settings → Privacy & Security → Health → Vitaq</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2>5. Third-Party Services</h2>
+    <p>Vitaq uses the following third-party data sources solely to provide app functionality:</p>
+    <ul>
+      <li><strong>USDA Food Database</strong> — A locally bundled food database used for nutrition search. No data is sent to the USDA; the database is stored on your device.</li>
+      <li><strong>Open Food Facts</strong> — Used for barcode scanning and food lookup. When you scan a barcode, a query is sent to the Open Food Facts API. No personal information is included in this request. Open Food Facts is a non-profit, open-source project.</li>
+      <li><strong>Apple StoreKit</strong> — Used to process subscription payments. All payment processing is handled entirely by Apple. We never see or store your payment information.</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2>6. Subscriptions and Payments</h2>
+    <p>Vitaq offers optional paid subscriptions (monthly and yearly) processed entirely through Apple's App Store and StoreKit. All billing, payment processing, and subscription management is handled by Apple. We do not have access to your payment details. You can manage or cancel your subscription at any time through your Apple ID settings.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>7. Children's Privacy</h2>
+    <p>Vitaq is not directed at children under the age of 13. We do not knowingly collect personal information from children. Since we do not collect any personal information from any users, no special handling is required. If you believe a child has provided personal information through the app, please contact us at <a href="mailto:support@getvitaq.app">support@getvitaq.app</a>.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>8. Data Security</h2>
+    <p>Because all your data is stored locally on your device, your data security is primarily governed by your device's own security features including Face ID, Touch ID, and device encryption. We encourage you to keep your device's operating system up to date and use a strong passcode.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>9. Your Rights</h2>
+    <p>Since we do not collect or store your personal data on any servers, there is no data held by Vitaq to access, correct, export, or delete. All your data resides on your device and can be deleted at any time by uninstalling the app.</p>
+    <p>If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA). Since we do not sell personal information and do not collect personal information, these rights are inherently satisfied.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of Vitaq after any changes constitutes your acceptance of the updated policy.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>11. Contact Us</h2>
+    <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+    <p><a href="mailto:support@getvitaq.app">support@getvitaq.app</a></p>
+  </main>
+
+  <footer>
+    <div class="footer-logo">vitaq</div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

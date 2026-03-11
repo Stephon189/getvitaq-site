@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Vitaq</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #080810;
+      --bg2:       #0d0d18;
+      --bg3:       #111120;
+      --border:    rgba(255,255,255,0.07);
+      --teal:      #00e5b8;
+      --purple:    #7c4dff;
+      --text:      #f0f0f8;
+      --text-mid:  #9090b0;
+      --text-dim:  #50507a;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,16,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 28px; height: 28px; }
+
+    .nav-wordmark {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-back {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .support-hero {
+      padding: 140px 48px 80px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      color: var(--text-mid);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: linear-gradient(160deg, rgba(0,229,184,0.06), rgba(124,77,255,0.06));
+      border: 1px solid rgba(0,229,184,0.2);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .contact-card-text h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .contact-card-text p {
+      color: var(--text-mid);
+      font-size: 0.9rem;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 8px 32px rgba(0,229,184,0.2);
+    }
+
+    .contact-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* FAQ */
+    .faq-section {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 48px 100px;
+    }
+
+    .faq-section h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .faq-item {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover { background: var(--bg3); }
+
+    .faq-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text-dim);
+      font-size: 1rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 28px 24px;
+    }
+
+    .faq-answer p {
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .faq-answer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* BETA NOTE */
+    .beta-note {
+      max-width: 740px;
+      margin: 0 auto 80px;
+      padding: 0 48px;
+    }
+
+    .beta-note-inner {
+      background: rgba(124,77,255,0.05);
+      border: 1px solid rgba(124,77,255,0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .beta-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .beta-note-inner h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .beta-note-inner p {
+      color: var(--text-mid);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text-mid); }
+
+    .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .support-hero { padding: 120px 20px 60px; }
+      .faq-section { padding: 0 20px 80px; }
+      .beta-note { padding: 0 20px; }
+      h1 { font-size: 2rem; }
+      .contact-card { padding: 28px 24px; }
+      footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00e5b8" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="62" y1="24" x2="92" y2="24" stroke="#7c4dff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="22" y1="46" x2="44" y2="46" stroke="#00c9a7" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="56" y1="46" x2="78" y2="46" stroke="#6a3ee0" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <path d="M36 63 L50 86 L64 63 Z" fill="url(#navGrad)"/>
+        <defs>
+          <linearGradient id="navGrad" x1="36" y1="63" x2="64" y2="86">
+            <stop offset="0%" stop-color="#00e5b8"/>
+            <stop offset="100%" stop-color="#7c4dff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">vitaq</span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </nav>
+
+  <div class="support-hero">
+    <span class="page-label">// support</span>
+    <h1>How can we help?</h1>
+    <p class="hero-sub">We're a small independent team and we read every message. Reach out and we'll get back to you as soon as possible.</p>
+
+    <div class="contact-card">
+      <div class="contact-card-text">
+        <h3>Email Support</h3>
+        <p>For bug reports, feature requests, or any questions about Vitaq.</p>
+      </div>
+      <a href="mailto:support@getvitaq.app" class="contact-btn">
+        ✉ support@getvitaq.app
+      </a>
+    </div>
+  </div>
+
+  <div class="beta-note">
+    <div class="beta-note-inner">
+      <div class="beta-icon">🧪</div>
+      <div>
+        <h4>Vitaq is currently in Beta</h4>
+        <p>You may encounter bugs or incomplete features. Your feedback directly shapes the app — we genuinely appreciate every report. When reporting a bug, please include your device model, iOS version, and steps to reproduce the issue.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          How do I cancel my subscription?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Subscriptions are managed entirely through Apple. Go to <strong>Settings → Apple ID → Subscriptions</strong> on your iPhone, find Vitaq, and tap Cancel Subscription. You'll retain access until the end of your current billing period.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Is my data backed up?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>All your data is stored locally on your device. It is included in your standard iPhone backup via iCloud or iTunes/Finder. We recommend keeping backups enabled to protect your workout history.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Why isn't my Apple Watch syncing?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Make sure Bluetooth is enabled on both your iPhone and Apple Watch, and that both devices are nearby. Try closing and reopening the Vitaq app on both devices. If the issue persists, restart both devices and contact us at <a href="mailto:support@getvitaq.app">support@getvitaq.app</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          How do I restore my purchase?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Open Vitaq and go to the subscription/paywall screen. Tap <strong>Restore Purchases</strong>. Make sure you are signed into the same Apple ID used for the original purchase.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Does Vitaq sell my health data?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. Vitaq is local-first — all your data stays on your device. We do not collect, store, or sell any personal or health data. See our <a href="/privacy.html">Privacy Policy</a> for full details.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          How do I delete my data?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Since all data is stored on your device, you can delete it entirely by uninstalling Vitaq from your iPhone. This permanently removes all local data. If you want to selectively delete data, you can do so from within the app's settings.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">vitaq</div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
