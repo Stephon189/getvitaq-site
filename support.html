@@ -9,15 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:        #080810;
-      --bg2:       #0d0d18;
-      --bg3:       #111120;
-      --border:    rgba(255,255,255,0.07);
-      --teal:      #00e5b8;
-      --purple:    #7c4dff;
-      --text:      #f0f0f8;
-      --text-mid:  #9090b0;
-      --text-dim:  #50507a;
+      --bg:           #f9f9fb;
+      --bg2:          #ffffff;
+      --bg3:          #f2f2f7;
+      --border:       rgba(0,0,0,0.08);
+      --teal:         #00b896;
+      --teal-light:   rgba(0,184,150,0.08);
+      --teal-mid:     rgba(0,184,150,0.15);
+      --purple:       #6c3fff;
+      --purple-light: rgba(108,63,255,0.06);
+      --text:         #0f0f1a;
+      --text-mid:     #4a4a6a;
+      --text-dim:     #9090b0;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,16 +34,15 @@
       overflow-x: hidden;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 48px;
+      padding: 18px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(8,8,16,0.8);
+      background: rgba(249,249,251,0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
@@ -76,9 +78,8 @@
 
     .nav-back:hover { color: var(--text); }
 
-    /* HERO */
     .support-hero {
-      padding: 140px 48px 80px;
+      padding: 128px 48px 72px;
       max-width: 740px;
       margin: 0 auto;
     }
@@ -95,11 +96,12 @@
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
       margin-bottom: 20px;
+      color: var(--text);
     }
 
     .hero-sub {
@@ -111,11 +113,11 @@
 
     /* CONTACT CARD */
     .contact-card {
-      background: linear-gradient(160deg, rgba(0,229,184,0.06), rgba(124,77,255,0.06));
-      border: 1px solid rgba(0,229,184,0.2);
+      background: linear-gradient(160deg, var(--teal-light), var(--purple-light));
+      border: 1px solid var(--teal-mid);
       border-radius: 20px;
-      padding: 36px 40px;
-      margin-bottom: 80px;
+      padding: 32px 36px;
+      margin-bottom: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -124,15 +126,13 @@
     }
 
     .contact-card-text h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 6px;
+      color: var(--text);
     }
 
-    .contact-card-text p {
-      color: var(--text-mid);
-      font-size: 0.9rem;
-    }
+    .contact-card-text p { color: var(--text-mid); font-size: 0.9rem; }
 
     .contact-btn {
       display: inline-flex;
@@ -147,13 +147,38 @@
       border-radius: 100px;
       white-space: nowrap;
       transition: opacity 0.2s, transform 0.2s;
-      box-shadow: 0 8px 32px rgba(0,229,184,0.2);
+      box-shadow: 0 4px 20px rgba(0,184,150,0.2);
     }
 
-    .contact-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* BETA NOTE */
+    .beta-note {
+      max-width: 740px;
+      margin: 0 auto 64px;
+      padding: 0 48px;
     }
+
+    .beta-note-inner {
+      background: var(--purple-light);
+      border: 1px solid rgba(108,63,255,0.12);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .beta-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+    .beta-note-inner h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .beta-note-inner p { color: var(--text-mid); font-size: 0.88rem; line-height: 1.65; }
 
     /* FAQ */
     .faq-section {
@@ -163,10 +188,11 @@
     }
 
     .faq-section h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
+      color: var(--text);
     }
 
     .faq-list {
@@ -176,6 +202,8 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
+      background: var(--bg2);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.03);
     }
 
     .faq-item {
@@ -189,7 +217,7 @@
       width: 100%;
       background: none;
       border: none;
-      padding: 24px 28px;
+      padding: 22px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -206,16 +234,16 @@
     .faq-question:hover { background: var(--bg3); }
 
     .faq-icon {
-      width: 20px; height: 20px;
+      width: 22px; height: 22px;
       border-radius: 50%;
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       color: var(--text-dim);
       font-size: 1rem;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, color 0.2s;
     }
 
     .faq-item.open .faq-icon {
@@ -228,65 +256,20 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 28px;
+      padding: 0 24px;
     }
 
     .faq-item.open .faq-answer {
       max-height: 300px;
-      padding: 0 28px 24px;
+      padding: 0 24px 20px;
     }
 
-    .faq-answer p {
-      color: var(--text-mid);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
+    .faq-answer p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; }
+    .faq-answer a { color: var(--teal); text-decoration: none; }
 
-    .faq-answer a {
-      color: var(--teal);
-      text-decoration: none;
-    }
-
-    /* BETA NOTE */
-    .beta-note {
-      max-width: 740px;
-      margin: 0 auto 80px;
-      padding: 0 48px;
-    }
-
-    .beta-note-inner {
-      background: rgba(124,77,255,0.05);
-      border: 1px solid rgba(124,77,255,0.15);
-      border-radius: 16px;
-      padding: 28px 32px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .beta-icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .beta-note-inner h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .beta-note-inner p {
-      color: var(--text-mid);
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 40px 48px;
+      padding: 36px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -304,31 +287,19 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.82rem;
-      transition: color 0.2s;
-    }
-
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text-mid); }
-
     .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
 
     @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
-      .support-hero { padding: 120px 20px 60px; }
+      nav { padding: 14px 20px; }
+      .support-hero { padding: 110px 20px 56px; }
       .faq-section { padding: 0 20px 80px; }
       .beta-note { padding: 0 20px; }
       h1 { font-size: 2rem; }
-      .contact-card { padding: 28px 24px; }
-      footer { padding: 32px 20px; flex-direction: column; text-align: center; }
+      .contact-card { padding: 24px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -337,15 +308,15 @@
   <nav>
     <a href="/" class="nav-logo">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00e5b8" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
-        <line x1="62" y1="24" x2="92" y2="24" stroke="#7c4dff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
-        <line x1="22" y1="46" x2="44" y2="46" stroke="#00c9a7" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
-        <line x1="56" y1="46" x2="78" y2="46" stroke="#6a3ee0" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="62" y1="24" x2="92" y2="24" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="22" y1="46" x2="44" y2="46" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="56" y1="46" x2="78" y2="46" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
         <path d="M36 63 L50 86 L64 63 Z" fill="url(#navGrad)"/>
         <defs>
           <linearGradient id="navGrad" x1="36" y1="63" x2="64" y2="86">
-            <stop offset="0%" stop-color="#00e5b8"/>
-            <stop offset="100%" stop-color="#7c4dff"/>
+            <stop offset="0%" stop-color="#00b896"/>
+            <stop offset="100%" stop-color="#6c3fff"/>
           </linearGradient>
         </defs>
       </svg>
@@ -454,6 +425,7 @@
       <li><a href="/">Home</a></li>
       <li><a href="/support.html">Support</a></li>
       <li><a href="/privacy.html">Privacy Policy</a></li>
+      <li><a href="/terms.html">Terms of Service</a></li>
     </ul>
     <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
   </footer>

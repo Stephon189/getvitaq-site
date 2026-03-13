@@ -10,22 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:        #080810;
-      --bg2:       #0d0d18;
-      --bg3:       #111120;
-      --border:    rgba(255,255,255,0.07);
-      --teal:      #00e5b8;
-      --teal-dim:  #00b892;
-      --purple:    #7c4dff;
-      --purple-dim:#5f35d4;
-      --text:      #f0f0f8;
-      --text-mid:  #9090b0;
-      --text-dim:  #50507a;
-      --card:      rgba(255,255,255,0.03);
+      --bg:          #f9f9fb;
+      --bg2:         #ffffff;
+      --bg3:         #f2f2f7;
+      --border:      rgba(0,0,0,0.08);
+      --teal:        #00b896;
+      --teal-dim:    #009a7e;
+      --teal-light:  rgba(0,184,150,0.08);
+      --teal-mid:    rgba(0,184,150,0.15);
+      --purple:      #6c3fff;
+      --purple-dim:  #5530d4;
+      --purple-light: rgba(108,63,255,0.06);
+      --text:        #0f0f1a;
+      --text-mid:    #4a4a6a;
+      --text-dim:    #9090b0;
+      --card:        #ffffff;
+      --shadow:      0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --shadow-md:   0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -36,27 +40,16 @@
       line-height: 1.6;
     }
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
     /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 48px;
+      padding: 18px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(8,8,16,0.7);
+      background: rgba(249,249,251,0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
@@ -121,43 +114,33 @@
       overflow: hidden;
     }
 
-    .hero-glow {
+    /* Subtle radial light glows on white bg */
+    .hero::before {
+      content: '';
       position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(0,184,150,0.07) 0%, transparent 65%);
+      top: -200px; left: -200px;
       pointer-events: none;
     }
 
-    .hero-glow-teal {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,229,184,0.12) 0%, transparent 70%);
-      top: -100px; left: -100px;
-      animation: driftA 12s ease-in-out infinite alternate;
-    }
-
-    .hero-glow-purple {
+    .hero::after {
+      content: '';
+      position: absolute;
       width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(124,77,255,0.1) 0%, transparent 70%);
-      bottom: -200px; right: -150px;
-      animation: driftB 15s ease-in-out infinite alternate;
-    }
-
-    @keyframes driftA {
-      from { transform: translate(0, 0); }
-      to   { transform: translate(80px, 60px); }
-    }
-
-    @keyframes driftB {
-      from { transform: translate(0, 0); }
-      to   { transform: translate(-60px, -80px); }
+      background: radial-gradient(circle, rgba(108,63,255,0.06) 0%, transparent 65%);
+      bottom: -100px; right: -150px;
+      pointer-events: none;
     }
 
     .hero-badge {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(0,229,184,0.08);
-      border: 1px solid rgba(0,229,184,0.2);
+      background: var(--teal-light);
+      border: 1px solid var(--teal-mid);
       border-radius: 100px;
       padding: 6px 16px;
       font-size: 0.78rem;
@@ -184,11 +167,14 @@
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 8vw, 7rem);
+      position: relative;
+      z-index: 1;
+      font-size: clamp(3rem, 8vw, 6.5rem);
       font-weight: 900;
       line-height: 1.0;
       letter-spacing: -0.04em;
       margin-bottom: 28px;
+      color: var(--text);
       animation: fadeUp 0.6s 0.1s ease both;
     }
 
@@ -200,9 +186,11 @@
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--text-mid);
-      max-width: 540px;
+      max-width: 520px;
       font-weight: 400;
       line-height: 1.7;
       margin-bottom: 48px;
@@ -210,6 +198,8 @@
     }
 
     .hero-actions {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -230,12 +220,12 @@
       padding: 16px 32px;
       border-radius: 100px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 40px rgba(0,229,184,0.2);
+      box-shadow: 0 8px 32px rgba(0,184,150,0.25);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 48px rgba(0,229,184,0.3);
+      box-shadow: 0 16px 48px rgba(0,184,150,0.35);
     }
 
     .btn-secondary {
@@ -249,15 +239,18 @@
       padding: 16px 24px;
       border-radius: 100px;
       border: 1px solid var(--border);
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
 
     .btn-secondary:hover {
       color: var(--text);
-      border-color: rgba(255,255,255,0.15);
+      border-color: rgba(0,0,0,0.15);
+      background: var(--bg2);
     }
 
     .hero-meta {
+      position: relative;
+      z-index: 1;
       margin-top: 64px;
       display: flex;
       align-items: center;
@@ -276,10 +269,7 @@
     }
 
     /* ── SECTION SHARED ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
+    section { position: relative; z-index: 1; }
 
     .section-label {
       display: inline-block;
@@ -298,6 +288,7 @@
       letter-spacing: -0.03em;
       line-height: 1.1;
       margin-bottom: 16px;
+      color: var(--text);
     }
 
     .section-sub {
@@ -307,6 +298,14 @@
       line-height: 1.7;
     }
 
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     /* ── FEATURES ── */
     .features {
       padding: 120px 48px;
@@ -314,9 +313,7 @@
       margin: 0 auto;
     }
 
-    .features-header {
-      margin-bottom: 64px;
-    }
+    .features-header { margin-bottom: 64px; }
 
     .features-grid {
       display: grid;
@@ -326,6 +323,7 @@
       border: 1px solid var(--border);
       border-radius: 24px;
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .feature-card {
@@ -360,21 +358,99 @@
       font-size: 1.4rem;
     }
 
-    .feature-icon-teal  { background: rgba(0,229,184,0.1); }
-    .feature-icon-purple { background: rgba(124,77,255,0.1); }
-    .feature-icon-mix   { background: linear-gradient(135deg, rgba(0,229,184,0.1), rgba(124,77,255,0.1)); }
+    .feature-icon-teal   { background: rgba(0,184,150,0.1); }
+    .feature-icon-purple { background: rgba(108,63,255,0.08); }
+    .feature-icon-mix    { background: linear-gradient(135deg, rgba(0,184,150,0.1), rgba(108,63,255,0.08)); }
 
     .feature-card h3 {
       font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 10px;
       letter-spacing: -0.01em;
+      color: var(--text);
     }
 
-    .feature-card p {
-      color: var(--text-mid);
-      font-size: 0.9rem;
-      line-height: 1.65;
+    .feature-card p { color: var(--text-mid); font-size: 0.9rem; line-height: 1.65; }
+
+    /* ── WATCH STRIP ── */
+    .watch-strip {
+      padding: 80px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .watch-inner {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .watch-inner::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(108,63,255,0.05) 0%, transparent 70%);
+      right: -100px; top: -100px;
+      border-radius: 50%;
+    }
+
+    .watch-features { display: flex; flex-direction: column; gap: 28px; }
+
+    .watch-feature { display: flex; gap: 16px; align-items: flex-start; }
+
+    .watch-feature-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      flex-shrink: 0;
+      margin-top: 7px;
+      box-shadow: 0 0 10px rgba(0,184,150,0.3);
+    }
+
+    .watch-feature h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .watch-feature p { color: var(--text-mid); font-size: 0.85rem; line-height: 1.6; }
+
+    .watch-visual { display: flex; justify-content: center; align-items: center; }
+
+    .watch-mockup {
+      width: 160px; height: 200px;
+      background: linear-gradient(160deg, #1a1a2e, #0d0d1a);
+      border-radius: 44px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .watch-mockup::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 36px;
+      background: linear-gradient(160deg, rgba(0,184,150,0.08), rgba(108,63,255,0.08));
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .watch-screen-content { position: relative; z-index: 1; text-align: center; }
+
+    .watch-ring { width: 80px; height: 80px; position: relative; margin: 0 auto 12px; }
+    .watch-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+    .watch-ring-label {
+      font-size: 0.55rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     /* ── PRICING ── */
@@ -402,11 +478,13 @@
       padding: 40px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .pricing-card.featured {
-      border-color: rgba(0,229,184,0.3);
-      background: linear-gradient(160deg, rgba(0,229,184,0.05), rgba(124,77,255,0.05));
+      border-color: var(--teal-mid);
+      background: linear-gradient(160deg, var(--teal-light), var(--purple-light));
+      box-shadow: var(--shadow-md);
     }
 
     .pricing-card.featured::before {
@@ -439,14 +517,10 @@
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 6px;
+      color: var(--text);
     }
 
-    .pricing-price span {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-mid);
-      letter-spacing: 0;
-    }
+    .pricing-price span { font-size: 1rem; font-weight: 500; color: var(--text-mid); letter-spacing: 0; }
 
     .pricing-desc {
       color: var(--text-mid);
@@ -484,7 +558,7 @@
     }
 
     .pricing-features li.dim { color: var(--text-dim); }
-    .pricing-features li.dim::before { color: var(--text-dim); }
+    .pricing-features li.dim::before { color: var(--text-dim); content: '–'; }
 
     .btn-plan {
       display: block;
@@ -500,142 +574,35 @@
     .btn-plan-free {
       border: 1px solid var(--border);
       color: var(--text-mid);
+      background: var(--bg);
     }
 
     .btn-plan-free:hover {
-      border-color: rgba(255,255,255,0.2);
+      border-color: rgba(0,0,0,0.15);
       color: var(--text);
+      background: var(--bg3);
     }
 
     .btn-plan-pro {
       background: linear-gradient(135deg, var(--teal), var(--purple));
       color: #fff;
-      box-shadow: 0 8px 32px rgba(0,229,184,0.2);
+      box-shadow: 0 8px 32px rgba(0,184,150,0.25);
     }
 
     .btn-plan-pro:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 40px rgba(0,229,184,0.3);
-    }
-
-    /* ── WATCH STRIP ── */
-    .watch-strip {
-      padding: 80px 48px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .watch-inner {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 64px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .watch-inner::before {
-      content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(124,77,255,0.08) 0%, transparent 70%);
-      right: -100px; top: -100px;
-      border-radius: 50%;
-    }
-
-    .watch-features {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .watch-feature {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .watch-feature-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--purple));
-      flex-shrink: 0;
-      margin-top: 7px;
-      box-shadow: 0 0 12px rgba(0,229,184,0.4);
-    }
-
-    .watch-feature h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .watch-feature p {
-      color: var(--text-mid);
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-
-    .watch-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .watch-mockup {
-      width: 160px; height: 200px;
-      background: linear-gradient(160deg, #1a1a2e, #0d0d1a);
-      border-radius: 44px;
-      border: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      box-shadow: 0 32px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-    }
-
-    .watch-mockup::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border-radius: 36px;
-      background: linear-gradient(160deg, rgba(0,229,184,0.06), rgba(124,77,255,0.06));
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .watch-screen-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .watch-ring {
-      width: 80px; height: 80px;
-      position: relative;
-      margin: 0 auto 12px;
-    }
-
-    .watch-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-
-    .watch-ring-label {
-      font-size: 0.55rem;
-      color: var(--text-mid);
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      box-shadow: 0 12px 40px rgba(0,184,150,0.35);
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 48px;
+      padding: 40px 48px;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
+      flex-wrap: wrap;
+      gap: 16px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -649,46 +616,23 @@
       letter-spacing: -0.02em;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-
+    .footer-links { display: flex; gap: 32px; list-style: none; }
+    .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text-mid); }
-
-    .footer-copy {
-      color: var(--text-dim);
-      font-size: 0.8rem;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
+      nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .features { padding: 80px 24px; }
       .features-grid { grid-template-columns: 1fr; }
       .pricing { padding: 80px 24px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .watch-strip { padding: 40px 24px; }
-      .watch-inner { grid-template-columns: 1fr; padding: 40px 32px; gap: 40px; }
+      .watch-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
       .watch-visual { order: -1; }
-      footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
+      footer { padding: 32px 20px; flex-direction: column; gap: 20px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
   </style>
@@ -699,15 +643,15 @@
   <nav>
     <a href="/" class="nav-logo">
       <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00e5b8" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
-        <line x1="62" y1="24" x2="92" y2="24" stroke="#7c4dff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
-        <line x1="22" y1="46" x2="44" y2="46" stroke="#00c9a7" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
-        <line x1="56" y1="46" x2="78" y2="46" stroke="#6a3ee0" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="62" y1="24" x2="92" y2="24" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="22" y1="46" x2="44" y2="46" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="56" y1="46" x2="78" y2="46" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
         <path d="M36 63 L50 86 L64 63 Z" fill="url(#navGrad)"/>
         <defs>
           <linearGradient id="navGrad" x1="36" y1="63" x2="64" y2="86">
-            <stop offset="0%" stop-color="#00e5b8"/>
-            <stop offset="100%" stop-color="#7c4dff"/>
+            <stop offset="0%" stop-color="#00b896"/>
+            <stop offset="100%" stop-color="#6c3fff"/>
           </linearGradient>
         </defs>
       </svg>
@@ -724,9 +668,6 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-glow hero-glow-teal"></div>
-    <div class="hero-glow hero-glow-purple"></div>
-
     <div class="hero-badge">Now in Beta</div>
 
     <h1>
@@ -835,7 +776,7 @@
           <div class="watch-feature">
             <div class="watch-feature-dot"></div>
             <div>
-              <h4>Goal ring glanceability</h4>
+              <h4>At-a-glance daily stats</h4>
               <p>Check your daily goals, water intake, and step count at a glance from your watch face.</p>
             </div>
           </div>
@@ -846,13 +787,13 @@
           <div class="watch-screen-content">
             <div class="watch-ring">
               <svg viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="32" stroke="rgba(0,229,184,0.15)" stroke-width="7" fill="none"/>
+                <circle cx="40" cy="40" r="32" stroke="rgba(0,184,150,0.15)" stroke-width="7" fill="none"/>
                 <circle cx="40" cy="40" r="32" stroke="url(#ringGrad)" stroke-width="7" fill="none"
                   stroke-dasharray="201" stroke-dashoffset="50" stroke-linecap="round"/>
                 <defs>
                   <linearGradient id="ringGrad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#00e5b8"/>
-                    <stop offset="100%" stop-color="#7c4dff"/>
+                    <stop offset="0%" stop-color="#00b896"/>
+                    <stop offset="100%" stop-color="#6c3fff"/>
                   </linearGradient>
                 </defs>
               </svg>
@@ -927,6 +868,7 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="support.html">Support</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
     </ul>
     <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
   </footer>
