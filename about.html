@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Vitaq</title>
+  <meta name="description" content="Vitaq was built as a personal tool by someone who needed it. Local-first, no ads, no accounts. Just a fitness tracker that works." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #f9f9fb;
+      --bg2:          #ffffff;
+      --bg3:          #f2f2f7;
+      --border:       rgba(0,0,0,0.08);
+      --teal:         #00b896;
+      --teal-light:   rgba(0,184,150,0.08);
+      --teal-mid:     rgba(0,184,150,0.15);
+      --purple:       #6c3fff;
+      --purple-light: rgba(108,63,255,0.06);
+      --text:         #0f0f1a;
+      --text-mid:     #4a4a6a;
+      --text-dim:     #9090b0;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(249,249,251,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 28px; height: 28px; }
+
+    .nav-wordmark {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-back {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 48px 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 0;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 800px;
+      margin: 56px auto;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* WHY SECTION */
+    .why-section {
+      margin-bottom: 80px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .why-section h2 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .why-section p {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+
+    .why-section p:last-child { margin-bottom: 0; }
+
+    /* PILLARS */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 80px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    .pillar {
+      background: var(--bg2);
+      padding: 36px 32px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .pillar:hover { background: var(--bg3); }
+
+    .pillar::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--purple));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .pillar:hover::after { opacity: 1; }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .pillar-icon-teal   { background: var(--teal-light); }
+    .pillar-icon-purple { background: var(--purple-light); }
+    .pillar-icon-mix    { background: linear-gradient(135deg, var(--teal-light), var(--purple-light)); }
+
+    .pillar h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .pillar p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* CLOSING */
+    .closing {
+      background: linear-gradient(160deg, var(--teal-light), var(--purple-light));
+      border: 1px solid var(--teal-mid);
+      border-radius: 20px;
+      padding: 48px 56px;
+      margin-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 40px;
+      font-size: 12rem;
+      font-weight: 900;
+      color: var(--teal);
+      opacity: 0.06;
+      line-height: 1;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .closing p {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+    }
+
+    .closing p:last-child { margin-bottom: 0; }
+
+    .closing strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--teal), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text-mid); }
+    .footer-copy { color: var(--text-dim); font-size: 0.8rem; }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 110px 20px 60px; }
+      .content { padding: 0 20px; }
+      .hero h1 { font-size: 2rem; }
+      .pillars { grid-template-columns: 1fr; }
+      .closing { padding: 32px 28px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8"  y1="24" x2="38" y2="24" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="62" y1="24" x2="92" y2="24" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.7"/>
+        <line x1="22" y1="46" x2="44" y2="46" stroke="#00b896" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <line x1="56" y1="46" x2="78" y2="46" stroke="#6c3fff" stroke-width="11" stroke-linecap="round" opacity="0.85"/>
+        <path d="M36 63 L50 86 L64 63 Z" fill="url(#navGrad)"/>
+        <defs>
+          <linearGradient id="navGrad" x1="36" y1="63" x2="64" y2="86">
+            <stop offset="0%" stop-color="#00b896"/>
+            <stop offset="100%" stop-color="#6c3fff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-wordmark">vitaq</span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="page-label">// about</span>
+    <h1>Built because<br/><span class="accent">it was needed.</span></h1>
+    <p class="hero-lead">Vitaq wasn't designed by a fitness brand or funded by venture capital. It started as a personal tool — built by someone who needed to stay healthy and active, and couldn't find an app that did the job without the baggage.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="content">
+
+    <!-- WHY -->
+    <div class="why-section fade-in">
+      <span class="section-label">// the why</span>
+      <h2>Sitting at a desk all day has consequences.</h2>
+      <p>Between a demanding career and two young kids, it's easy to let fitness slide. The work is there, the meetings are there, the exhaustion is there. And before long, you realize you're not as sharp, not as energetic, not as present as you want to be.</p>
+      <p>That realization was the starting point for Vitaq. Not a desire to build a fitness company — just a genuine need to track workouts, monitor nutrition, and stay consistent without making it complicated. The kind of app that gets out of your way and lets you focus on showing up.</p>
+      <p>When nothing on the market felt right — too cluttered, too gamified, too willing to trade your health data for ad revenue — the decision was simple: build it.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PILLARS -->
+    <div class="fade-in" style="margin-bottom: 16px;">
+      <span class="section-label">// what we believe</span>
+    </div>
+
+    <div class="pillars fade-in">
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-teal">🔒</div>
+        <h3>Your data stays yours</h3>
+        <p>Everything you log — workouts, nutrition, body stats — lives on your device. No servers. No accounts. No third parties with access to your health information.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-mix">⌚</div>
+        <h3>Your watch should work with you</h3>
+        <p>Apple Watch is the best fitness companion ever made. Vitaq treats it that way — real-time bidirectional sync so you can log sets from your wrist without reaching for your phone.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-purple">🎯</div>
+        <h3>Consistency over perfection</h3>
+        <p>The goal isn't to optimize every macro or hit a PR every session. It's to show up regularly, track honestly, and build habits that last — especially when life is full.</p>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="closing fade-in">
+      <p><strong>Vitaq is for the parent who squeezes in a workout before the kids wake up.</strong> The professional who eats lunch at their desk and still wants to know what they're putting in their body. The person who doesn't need a leaderboard or a streak notification — just a clear picture of how they're doing.</p>
+      <p>It was built for personal use and shared because the problem isn't unique. If any of this sounds familiar, Vitaq was made for you too.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">vitaq</div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      <li><a href="/terms.html">Terms of Service</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
