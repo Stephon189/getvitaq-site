@@ -304,6 +304,77 @@
       .contact-card { padding: 24px 20px; }
       footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { background: var(--bg3); }
+    .nav-hamburger span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-mid);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0; right: 0;
+      background: rgba(249,249,251,0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-mobile-menu a:hover { background: var(--bg3); color: var(--text); }
+    .nav-mobile-menu .mobile-cta {
+      margin-top: 8px;
+      background: linear-gradient(135deg, var(--teal), var(--purple));
+      color: #fff !important;
+      text-align: center;
+      font-weight: 700;
+      border-radius: 100px;
+    }
+    .nav-mobile-menu .mobile-cta:hover { opacity: 0.9; background: linear-gradient(135deg, var(--teal), var(--purple)); }
+
+    @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -327,7 +398,18 @@
       <span class="nav-wordmark">vitaq</span>
     </a>
     <a href="/" class="nav-back">← Back to home</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="/">Home</a>
+    <a href="about.html">About</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </div>
 
   <div class="support-hero">
     <span class="page-label">// support</span>
@@ -432,6 +514,24 @@
       var isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
       if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+
+  <script>
+    var hamburger = document.getElementById('navHamburger');
+    var mobileMenu = document.getElementById('navMobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
     }
   </script>
 

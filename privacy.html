@@ -184,6 +184,64 @@
       h1 { font-size: 2rem; }
       footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { background: var(--bg3); }
+    .nav-hamburger span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-mid);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0; right: 0;
+      background: rgba(249,249,251,0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-mobile-menu a:hover { background: var(--bg3); color: var(--text); }
+    @media (max-width: 900px) { .nav-hamburger { display: flex; } }
   </style>
 </head>
 <body>
@@ -207,7 +265,16 @@
       <span class="nav-wordmark">vitaq</span>
     </a>
     <a href="/" class="nav-back">← Back to home</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </nav>
+
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/roadmap.html">Roadmap</a>
+    <a href="/support.html">Support</a>
+    <a href="/terms.html">Terms of Service</a>
+  </div>
 
   <main>
     <span class="page-label">// legal</span>
@@ -219,7 +286,7 @@
     </div>
 
     <h2>1. Who We Are</h2>
-    <p>Vitaq ("we," "us," or "our") is a fitness application developed and operated as an independent app. If you have any questions about this Privacy Policy, you can contact us at <a href="/cdn-cgi/l/email-protection#8dfef8fdfde2fff9cdeae8f9fbe4f9ecfca3ecfdfd"><span class="__cf_email__" data-cfemail="e0939590908f9294a08785949689948191ce819090">[email&#160;protected]</span></a>.</p>
+    <p>Vitaq ("we," "us," or "our") is a fitness application developed and operated as an independent app. If you have any questions about this Privacy Policy, you can contact us at <a href="/cdn-cgi/l/email-protection#42313732322d303602252736342b3623336c233232"><span class="__cf_email__" data-cfemail="067573767669747246616372706f72677728677676">[email&#160;protected]</span></a>.</p>
 
     <div class="section-divider"></div>
 
@@ -243,12 +310,7 @@
     <p>Data stored locally includes:</p>
     <ul>
       <li>Workout logs, exercise history, and personal records</li>
-      <li>Nutrition entries, meal templates, and food logs</li>
-      <li>Profile information including goals and body metrics</li>
-      <li>App preferences and settings</li>
-    </ul>
-
-    <div class="section-divider"></div>
+      <li>Nutrition entries, meal templates, and food <div class="section-divider"></div>
 
     <h2>4. Apple HealthKit</h2>
     <p>Vitaq integrates with Apple HealthKit to read and write health and fitness data such as active energy burned, workout sessions, and body weight. This integration is subject to Apple's HealthKit guidelines.</p>
@@ -262,12 +324,11 @@
     <div class="section-divider"></div>
 
     <h2>5. Third-Party Services</h2>
-    <p>Vitaq uses the following third-party data sources solely to provide app functionality. We do not share personal information with any of these services.</p>
+    <p>Vitaq uses the following third-party data sources solely to provide app functionality:</p>
     <ul>
       <li><strong>USDA Food Database</strong> — A locally bundled food database used for nutrition search. No data is sent to the USDA; the database is stored on your device.</li>
-      <li><strong>Open Food Facts</strong> — Used for barcode scanning and food lookup. When you scan a barcode, a product query (containing only the barcode number) is sent to the Open Food Facts API. No personal information, account data, or health data is included in this request. Open Food Facts is a non-profit, open-source project. Their privacy policy is available at <a href="https://world.openfoodfacts.org/privacy" target="_blank">openfoodfacts.org/privacy</a>.</li>
-      <li><strong>Apple StoreKit</strong> — Used to process subscription payments. All payment processing is handled entirely by Apple. We never see, receive, or store your payment information. Apple's privacy policy governs their handling of payment data.</li>
-      <li><strong>Apple iCloud Backup</strong> — If you have iCloud Backup enabled on your device, your locally stored Vitaq data may be included in your device backup. This is governed by Apple's Privacy Policy, not ours.</li>
+      <li><strong>Open Food Facts</strong> — Used for barcode scanning and food lookup. When you scan a barcode, a query is sent to the Open Food Facts API. No personal information is included in this request. Open Food Facts is a non-profit, open-source project.</li>
+      <li><strong>Apple StoreKit</strong> — Used to process subscription payments. All payment processing is handled entirely by Apple. We never see or store your payment information.</li>
     </ul>
 
     <div class="section-divider"></div>
@@ -278,7 +339,7 @@
     <div class="section-divider"></div>
 
     <h2>7. Children's Privacy</h2>
-    <p>Vitaq is not directed at children under the age of 13. We do not knowingly collect personal information from children. Since we do not collect any personal information from any users, no special handling is required. If you believe a child has provided personal information through the app, please contact us at <a href="/cdn-cgi/l/email-protection#8cfff9fcfce3fef8ccebe9f8fae5f8edfda2edfcfc"><span class="__cf_email__" data-cfemail="c0b3b5b0b0afb2b480a7a5b4b6a9b4a1b1eea1b0b0">[email&#160;protected]</span></a>.</p>
+    <p>Vitaq is not directed at children under the age of 13. We do not knowingly collect personal information from children. Since we do not collect any personal information from any users, no special handling is required. If you believe a child has provided personal information through the app, please contact us at <a href="mailto:support@getvitaq.app">support@getvitaq.app</a>.</p>
 
     <div class="section-divider"></div>
 
@@ -293,21 +354,45 @@
 
     <div class="section-divider"></div>
 
-    <h2>10. Business Transfers and Discontinuation</h2>
-    <p>In the event that Vitaq is acquired, merged, or its assets are transferred to another entity, we will notify users via the App or this website prior to any such transfer. Because all your data is stored locally on your device, no personal data held by Vitaq would be transferred as part of such a transaction — your data remains on your device and under your control at all times.</p>
-    <p>If the App is discontinued, your locally stored data will remain on your device until you choose to delete it. We will provide reasonable advance notice of any discontinuation through the App or this website.</p>
-
-    <div class="section-divider"></div>
-
-    <h2>11. Changes to This Policy</h2>
+    <h2>10. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of Vitaq after any changes constitutes your acceptance of the updated policy.</p>
 
     <div class="section-divider"></div>
 
-    <h2>12. Contact Us</h2>
+    <h2>11. Contact Us</h2>
     <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
-    <p><a href="/cdn-cgi/l/email-protection#d6a5a3a6a6b9a4a296b1b3a2a0bfa2b7a7f8b7a6a6"><span class="__cf_email__" data-cfemail="70030500001f02043017150406190411015e110000">[email&#160;protected]</span></a></p>
+    <p><a href="mailto:support@getvitaq.app">support@getvitaq.app</a></p>
   </main>
 
   <footer>
-    <div class="
+    <div class="footer-logo">vitaq</div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/roadmap.html">Roadmap</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      <li><a href="/terms.html">Terms of Service</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
+  </footer>
+
+  <script>
+    var hamburger = document.getElementById('navHamburger');
+    var mobileMenu = document.getElementById('navMobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -184,6 +184,64 @@
       h1 { font-size: 2rem; }
       footer { padding: 28px 20px; flex-direction: column; text-align: center; }
     }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { background: var(--bg3); }
+    .nav-hamburger span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-mid);
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 61px;
+      left: 0; right: 0;
+      background: rgba(249,249,251,0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-mobile-menu a:hover { background: var(--bg3); color: var(--text); }
+    @media (max-width: 900px) { .nav-hamburger { display: flex; } }
   </style>
 </head>
 <body>
@@ -207,7 +265,16 @@
       <span class="nav-wordmark">vitaq</span>
     </a>
     <a href="/" class="nav-back">← Back to home</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </nav>
+
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/roadmap.html">Roadmap</a>
+    <a href="/support.html">Support</a>
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
 
   <main>
     <span class="page-label">// legal</span>
@@ -234,13 +301,13 @@
     <div class="section-divider"></div>
 
     <h2>4. Subscriptions and Payments</h2>
-    <p>Vitaq offers a free tier and optional paid subscriptions ("Vitaq Pro") processed through Apple's App Store. All billing and payment processing is handled exclusively by Apple — Vitaq is not the merchant of record and does not process, store, or have access to your payment information.</p>
+    <p>Vitaq offers a free tier and optional paid subscriptions ("Vitaq Pro") processed through Apple's App Store.</p>
     <ul>
       <li>Subscriptions are billed on a monthly or annual basis as selected at purchase</li>
       <li>A 14-day free trial is available for new subscribers who have not previously used a free trial</li>
       <li>Payment is charged to your Apple ID account at confirmation of purchase</li>
       <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period</li>
-      <li>You can manage and cancel subscriptions at any time through <strong>Settings → Apple ID → Subscriptions</strong> on your iPhone</li>
+      <li>You can manage and cancel subscriptions at any time through <strong>Settings &#8594; Apple ID &#8594; Subscriptions</strong> on your iPhone</li>
       <li>All refund requests must be submitted directly to Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> — Vitaq has no ability to issue refunds on Apple's behalf</li>
       <li>Refunds are granted at Apple's sole discretion in accordance with Apple's Media Services Terms and Conditions</li>
       <li>Vitaq does not offer refunds for partial subscription periods, unused trial periods, or subscription periods already billed</li>
@@ -273,14 +340,12 @@
     <div class="section-divider"></div>
 
     <h2>7. Health and Fitness Disclaimer</h2>
-    <p>Vitaq is intended for general fitness and wellness tracking purposes only. The App is not a medical device and does not provide medical advice, diagnosis, or treatment. Nothing in the App constitutes professional medical, nutritional, or dietary advice.</p>
-    <p><strong>Calorie and nutrition estimates:</strong> All calorie targets, TDEE calculations, macro recommendations, and nutrition data provided by the App are mathematical estimates based on population-level formulas (such as the Mifflin-St Jeor equation). Individual metabolism varies significantly based on genetics, body composition, hormones, medications, and other factors that no app can directly measure. These figures may have an error margin of ±10% or more and should be treated as a starting point, not a precise measurement.</p>
+    <p>Vitaq is intended for general fitness and wellness tracking purposes only. The App is not a medical device and does not provide medical advice, diagnosis, or treatment.</p>
     <ul>
-      <li>Consult a qualified healthcare professional or registered dietitian before beginning any exercise or nutrition program, particularly if you have existing health conditions</li>
-      <li>If you have or have had diabetes, thyroid disorders, eating disorders, cardiovascular disease, or are pregnant or postpartum, do not rely on this App's calorie or nutrition targets without guidance from a medical professional</li>
-      <li>Calorie and nutrition data sourced from third-party databases (including Open Food Facts and USDA) may contain errors or inaccuracies — always verify nutritional information against product labels where accuracy is critical</li>
-      <li>Do not use the App's data to make clinical health or medical decisions</li>
-      <li>We are not responsible for any injury, health outcome, weight change, or adverse effect resulting from your use of the App or reliance on its estimates</li>
+      <li>Consult a qualified healthcare professional before beginning any exercise or nutrition program</li>
+      <li>Calorie and nutrition targets provided by the App are estimates and may not be appropriate for all individuals</li>
+      <li>Do not rely solely on the App's data for medical or health decisions</li>
+      <li>We are not responsible for any injury or health outcome resulting from use of the App</li>
     </ul>
 
     <div class="section-divider"></div>
@@ -297,8 +362,8 @@
 
     <h2>10. Disclaimers and Limitation of Liability</h2>
     <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied. To the fullest extent permitted by law, we disclaim all warranties including merchantability, fitness for a particular purpose, and non-infringement.</p>
-    <p>To the maximum extent permitted by applicable law, Vitaq shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data, loss of profits, or personal injury, arising out of or related to your use of the App — even if Vitaq has been advised of the possibility of such damages.</p>
-    <p>To the maximum extent permitted by applicable law, Vitaq's total cumulative liability to you for any claims arising out of or related to these Terms or your use of the App shall not exceed the greater of (a) the total amount you paid for a Vitaq Pro subscription in the twelve (12) months immediately preceding the claim, or (b) ten dollars ($10.00 USD).</p>
+    <p>To the maximum extent permitted by applicable law, Vitaq shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of data or loss of profits, arising out of or related to your use of the App.</p>
+    <p>To the maximum extent permitted by applicable law, Vitaq's total cumulative liability to you for any claims shall not exceed the greater of (a) the total amount you paid for a Vitaq Pro subscription in the twelve months preceding the claim, or (b) ten dollars ($10.00 USD).</p>
 
     <div class="section-divider"></div>
 
@@ -312,37 +377,15 @@
 
     <div class="section-divider"></div>
 
-    <h2>13. Governing Law and Dispute Resolution</h2>
+    <h2>13. Governing Law</h2>
     <p>These Terms shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law provisions.</p>
-    <p>Before initiating any formal legal proceeding, you agree to first contact us at <a href="/cdn-cgi/l/email-protection#90e3e5e0e0ffe2e4d0f7f5e4e6f9e4f1e1bef1e0e0"><span class="__cf_email__" data-cfemail="3e4d4b4e4e514c4a7e595b4a48574a5f4f105f4e4e">[email&#160;protected]</span></a> and provide a written description of the dispute. We will attempt to resolve the dispute informally within 30 days of receiving notice. If informal resolution fails, any legal action shall be brought exclusively in the state or federal courts located in Florida, and you consent to personal jurisdiction in those courts.</p>
+    <p>Before initiating any formal legal proceeding, you agree to first contact us at <a href="mailto:support@getvitaq.app">support@getvitaq.app</a> and provide a written description of the dispute. We will attempt to resolve the dispute informally within 30 days. If informal resolution fails, any legal action shall be brought exclusively in the state or federal courts located in Florida.</p>
 
     <div class="section-divider"></div>
 
-    <h2>14. Indemnification</h2>
-    <p>You agree to indemnify, defend, and hold harmless Vitaq and its officers, developers, agents, and successors from and against any claims, liabilities, damages, losses, costs, or expenses (including reasonable legal fees) arising out of or related to: (a) your use of the App in violation of these Terms; (b) your violation of any applicable law or regulation; or (c) any content you input into the App that infringes or misappropriates any third-party right.</p>
-
-    <div class="section-divider"></div>
-
-    <h2>15. Termination</h2>
-    <p>We reserve the right to suspend or terminate your access to the App at any time, with or without notice, if we reasonably believe you have violated these Terms or engaged in conduct harmful to other users, third parties, or Vitaq. Upon termination, your right to use the App ceases immediately. Since all data is stored locally on your device, termination does not result in deletion of your data — you retain control of data on your own device. Provisions that by their nature should survive termination (including but not limited to Sections 7, 10, 13, and 14) shall survive.</p>
-
-    <div class="section-divider"></div>
-
-    <h2>16. Apple App Store — Additional Terms</h2>
-    <p>The following terms apply because Vitaq is distributed through Apple's App Store:</p>
-    <ul>
-      <li>These Terms are an agreement between you and Vitaq only — not between you and Apple. Apple is not a party to these Terms and has no obligation to provide maintenance or support for the App</li>
-      <li>Apple has no warranty obligations with respect to the App. In the event of any warranty failure, you may notify Apple and Apple may refund the purchase price; Apple has no further warranty obligation beyond that refund</li>
-      <li>Apple is not responsible for addressing any claims by you or any third party relating to the App, including product liability claims, consumer protection claims, or intellectual property infringement claims</li>
-      <li>You represent and warrant that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not listed on any U.S. Government prohibited or restricted parties list</li>
-      <li>Apple and its subsidiaries are third-party beneficiaries of these Terms and, upon your acceptance, Apple has the right to enforce these Terms against you as a third-party beneficiary</li>
-    </ul>
-
-    <div class="section-divider"></div>
-
-    <h2>17. Contact Us</h2>
+    <h2>14. Contact Us</h2>
     <p>If you have any questions about these Terms of Service, please contact us at:</p>
-    <p><a href="/cdn-cgi/l/email-protection#6c1f191c1c031e182c0b09181a05180d1d420d1c1c"><span class="__cf_email__" data-cfemail="03707673736c717743646677756a7762722d627373">[email&#160;protected]</span></a></p>
+    <p><a href="mailto:support@getvitaq.app">support@getvitaq.app</a></p>
   </main>
 
   <footer>
@@ -351,3 +394,29 @@
       <li><a href="/">Home</a></li>
       <li><a href="/about.html">About</a></li>
       <li><a href="/roadmap.html">Roadmap</a></li>
+      <li><a href="/support.html">Support</a></li>
+      <li><a href="/privacy.html">Privacy Policy</a></li>
+      <li><a href="/terms.html">Terms of Service</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
+  </footer>
+
+  <script>
+    var hamburger = document.getElementById('navHamburger');
+    var mobileMenu = document.getElementById('navMobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
