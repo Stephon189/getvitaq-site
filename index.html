@@ -354,14 +354,20 @@
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 28px;
-      padding: 64px;
+      padding: 64px 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .watch-top {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
     }
 
     .watch-inner::before {
@@ -389,39 +395,54 @@
     .watch-feature h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
     .watch-feature p { color: var(--text-mid); font-size: 0.85rem; line-height: 1.6; }
 
-    .watch-visual { display: flex; justify-content: center; align-items: center; }
-
-    .watch-mockup {
-      width: 160px; height: 200px;
-      background: linear-gradient(160deg, #1a1a2e, #0d0d1a);
-      border-radius: 44px;
-      border: 1px solid rgba(255,255,255,0.1);
+    .watch-visual {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      box-shadow: 0 32px 64px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+      gap: 16px;
+      overflow-x: auto;
+      padding: 16px 0 24px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .watch-visual::-webkit-scrollbar { display: none; }
+
+    .watch-frame {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
     }
 
-    .watch-mockup::before {
-      content: '';
-      position: absolute;
-      inset: 8px;
-      border-radius: 36px;
-      background: linear-gradient(160deg, rgba(0,184,150,0.08), rgba(108,63,255,0.08));
-      border: 1px solid rgba(255,255,255,0.05);
+    .watch-phone {
+      background: #0a0a12;
+      border-radius: 28px;
+      padding: 8px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 20px 48px rgba(0,0,0,0.3),
+        0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .watch-screen-content { position: relative; z-index: 1; text-align: center; }
+    .watch-frame:hover .watch-phone {
+      transform: translateY(-6px);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.1),
+        0 32px 64px rgba(0,0,0,0.35),
+        0 8px 24px rgba(108,63,255,0.1);
+    }
 
-    .watch-ring { width: 80px; height: 80px; position: relative; margin: 0 auto 12px; }
-    .watch-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .watch-phone img {
+      width: 140px;
+      border-radius: 22px;
+      display: block;
+    }
 
-    .watch-ring-label {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.5);
+    .watch-frame-label {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
     }
 
     /* ── PRICING ── */
@@ -683,8 +704,10 @@
       .pricing { padding: 80px 24px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .watch-strip { padding: 40px 24px; }
-      .watch-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
-      .watch-visual { order: -1; }
+      .watch-inner { padding: 32px 24px 28px; gap: 32px; }
+      .watch-top { grid-template-columns: 1fr; gap: 32px; }
+      .watch-visual { gap: 12px; }
+      .watch-phone img { width: 120px; }
       footer { padding: 32px 20px; flex-direction: column; gap: 20px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
@@ -892,15 +915,17 @@
   <!-- APPLE WATCH -->
   <section class="watch-strip" id="watch">
     <div class="watch-inner">
-      <div>
-        <span class="section-label">// apple watch</span>
-        <h2 class="section-title">Your wrist.<br/>Your workout.</h2>
-        <p class="section-sub" style="margin-bottom: 40px;">Vitaq's watchOS companion gives you full workout control without reaching for your phone.</p>
+      <div class="watch-top">
+        <div>
+          <span class="section-label">// apple watch</span>
+          <h2 class="section-title">Your wrist.<br/>Your workout.</h2>
+          <p class="section-sub" style="margin-bottom: 40px;">Vitaq's watchOS companion gives you full workout control without reaching for your phone.</p>
+        </div>
         <div class="watch-features">
           <div class="watch-feature">
             <div class="watch-feature-dot"></div>
             <div>
-              <h4>Start & finish from your watch</h4>
+              <h4>Start &amp; finish from your watch</h4>
               <p>Begin workouts, log sets, and finish sessions entirely from your wrist. No phone required.</p>
             </div>
           </div>
@@ -921,23 +946,35 @@
         </div>
       </div>
       <div class="watch-visual">
-        <div class="watch-mockup">
-          <div class="watch-screen-content">
-            <div class="watch-ring">
-              <svg viewBox="0 0 80 80">
-                <circle cx="40" cy="40" r="32" stroke="rgba(0,184,150,0.15)" stroke-width="7" fill="none"/>
-                <circle cx="40" cy="40" r="32" stroke="url(#ringGrad)" stroke-width="7" fill="none"
-                  stroke-dasharray="201" stroke-dashoffset="50" stroke-linecap="round"/>
-                <defs>
-                  <linearGradient id="ringGrad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#00b896"/>
-                    <stop offset="100%" stop-color="#6c3fff"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div class="watch-ring-label">SET 3 · 225 LB</div>
+        <div class="watch-frame">
+          <div class="watch-phone">
+            <img src="watch_home.png" alt="Vitaq Apple Watch home screen" loading="lazy" />
           </div>
+          <div class="watch-frame-label">Home</div>
+        </div>
+        <div class="watch-frame">
+          <div class="watch-phone">
+            <img src="watch_exercise_list.png" alt="Vitaq Apple Watch exercise list" loading="lazy" />
+          </div>
+          <div class="watch-frame-label">Workout</div>
+        </div>
+        <div class="watch-frame">
+          <div class="watch-phone">
+            <img src="watch_log_setpng.png" alt="Vitaq Apple Watch log set screen" loading="lazy" />
+          </div>
+          <div class="watch-frame-label">Log Set</div>
+        </div>
+        <div class="watch-frame">
+          <div class="watch-phone">
+            <img src="watch_nutrition.png" alt="Vitaq Apple Watch nutrition screen" loading="lazy" />
+          </div>
+          <div class="watch-frame-label">Nutrition</div>
+        </div>
+        <div class="watch-frame">
+          <div class="watch-phone">
+            <img src="watch_summary.png" alt="Vitaq Apple Watch workout summary" loading="lazy" />
+          </div>
+          <div class="watch-frame-label">Summary</div>
         </div>
       </div>
     </div>
