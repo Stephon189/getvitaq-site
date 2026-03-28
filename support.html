@@ -114,46 +114,125 @@
       margin-bottom: 48px;
     }
 
-    /* CONTACT CARD */
-    .contact-card {
+    /* CONTACT FORM */
+    .contact-form-wrap {
       background: linear-gradient(160deg, var(--teal-light), var(--purple-light));
       border: 1px solid var(--teal-mid);
       border-radius: 20px;
-      padding: 32px 36px;
+      padding: 36px;
       margin-bottom: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
     }
 
-    .contact-card-text h3 {
-      font-size: 1.05rem;
+    .contact-form-wrap h3 {
+      font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 6px;
       color: var(--text);
     }
 
-    .contact-card-text p { color: var(--text-mid); font-size: 0.9rem; }
+    .contact-form-wrap p {
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
 
-    .contact-btn {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--bg2);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,184,150,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .form-submit {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: linear-gradient(135deg, var(--teal), var(--purple));
       color: #fff;
-      text-decoration: none;
+      border: none;
+      font-family: 'Outfit', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
-      padding: 12px 24px;
+      font-size: 0.92rem;
+      padding: 13px 28px;
       border-radius: 100px;
-      white-space: nowrap;
+      cursor: pointer;
       transition: opacity 0.2s, transform 0.2s;
       box-shadow: 0 4px 20px rgba(0,184,150,0.2);
     }
 
-    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-success {
+      display: none;
+      background: rgba(0,184,150,0.08);
+      border: 1px solid rgba(0,184,150,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      color: var(--teal);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .form-error {
+      display: none;
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: #ef4444;
+      font-size: 0.88rem;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 24px 20px; }
+    }
 
     /* BETA NOTE */
     .beta-note {
@@ -416,14 +495,49 @@
     <h1>How can we help?</h1>
     <p class="hero-sub">We're a small independent team and we read every message. Reach out and we'll get back to you as soon as possible.</p>
 
-    <div class="contact-card">
-      <div class="contact-card-text">
-        <h3>Email Support</h3>
-        <p>For bug reports, feature requests, or any questions about Vitaq.</p>
-      </div>
-      <a href="mailto:support@getvitaq.app" class="contact-btn">
-        ✉ <!--email_off-->support@getvitaq.app<!--/email_off-->
-      </a>
+    <div class="contact-form-wrap">
+      <h3>Send us a message</h3>
+      <p>For bug reports, feature requests, or any questions about Vitaq. We read every message.</p>
+
+      <form id="contactForm" action="https://formspree.io/f/xvzvzrzl" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Topic</label>
+          <select id="subject" name="subject">
+            <option value="Bug Report">Bug Report</option>
+            <option value="Feature Request">Feature Request</option>
+            <option value="Subscription / Billing">Subscription / Billing</option>
+            <option value="Apple Watch">Apple Watch</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question in as much detail as you can..." required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="submitBtn">
+          ✉ Send Message
+        </button>
+
+        <div class="form-success" id="formSuccess">
+          ✅ Message sent! We'll get back to you as soon as possible.
+        </div>
+        <div class="form-error" id="formError">
+          Something went wrong. Please try again or email us directly at support@getvitaq.app.
+        </div>
+      </form>
     </div>
   </div>
 
@@ -458,7 +572,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <p>Make sure Bluetooth is enabled on both your iPhone and Apple Watch, and that both devices are nearby. Try closing and reopening the Vitaq app on both devices. If the issue persists, restart both devices and contact us at <a href="mailto:support@getvitaq.app"><!--email_off-->support@getvitaq.app<!--/email_off--></a>.</p>
+          <p>Make sure Bluetooth is enabled on both your iPhone and Apple Watch, and that both devices are nearby. Try closing and reopening the Vitaq app on both devices. If the issue persists, restart both devices and contact us at <a href="/cdn-cgi/l/email-protection#4b383e3b3b24393f0b2c2e3f3d223f2a3a652a3b3b">support@getvitaq.app</a>.</p>
         </div>
       </div>
 
@@ -508,7 +622,7 @@
     <p class="footer-copy">© 2026 Vitaq. All rights reserved.</p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function toggle(btn) {
       var item = btn.closest('.faq-item');
       var isOpen = item.classList.contains('open');
@@ -530,6 +644,40 @@
         link.addEventListener('click', function() {
           hamburger.classList.remove('open');
           mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  </script>
+
+  <script>
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('submitBtn');
+        var success = document.getElementById('formSuccess');
+        var error = document.getElementById('formError');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        success.style.display = 'none';
+        error.style.display = 'none';
+
+        fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(response) {
+          if (response.ok) {
+            success.style.display = 'block';
+            contactForm.reset();
+          } else {
+            error.style.display = 'block';
+          }
+        }).catch(function() {
+          error.style.display = 'block';
+        }).finally(function() {
+          btn.disabled = false;
+          btn.innerHTML = '✉ Send Message';
         });
       });
     }
